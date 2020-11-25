@@ -1,4 +1,4 @@
-package com.cqteam.lib_image_loaderx
+package com.cqteam.imageloaderx
 
 import org.junit.Test
 

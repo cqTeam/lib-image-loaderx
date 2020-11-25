@@ -1,4 +1,4 @@
-package com.cqteam.lib_image_loaderx
+package com.cqteam.imageloaderx
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
