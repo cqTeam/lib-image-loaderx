@@ -1,6 +1,5 @@
 package com.cqteam.imageloaderx
 
-import android.content.Context
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 
@@ -15,16 +14,14 @@ internal interface ILoader {
     /**
      *  普通图片
      */
-    fun load(context: Context, view: ImageView, url: String)
+    fun load(view: ImageView, url: String)
 
     fun load(
-        context: Context,
         view: ImageView,
         url: String, @DrawableRes placeholderResourceId: Int?, @DrawableRes errorResourceId: Int?
     )
 
     fun load(
-        context: Context,
         view: ImageView,
         @DrawableRes showResourceId: Int?,
         @DrawableRes placeholderResourceId: Int?,
@@ -35,7 +32,6 @@ internal interface ILoader {
      *  四个圆角图片
      */
     fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         @DrawableRes showResourceId: Int?,
         roundingRadius: Int,
@@ -44,7 +40,6 @@ internal interface ILoader {
     )
 
     fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         url: String,
         roundingRadius: Int,
@@ -53,7 +48,6 @@ internal interface ILoader {
     )
 
     fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         url: String,
         topLeftRadius: Int,
@@ -63,7 +57,6 @@ internal interface ILoader {
     )
 
     fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         @DrawableRes showResourceId: Int?,
         topLeftRadius: Int,
@@ -75,6 +68,6 @@ internal interface ILoader {
     /**
      *  圆形图片
      */
-    fun loadCircleImageWithDefault(context: Context, imageView: ImageView, url: String, defaultImgRes :Int)
-    fun loadCircleImageWithDefault(context: Context, imageView: ImageView, @DrawableRes showResourceId: Int?, defaultImgRes :Int)
+    fun loadCircleImageWithDefault(imageView: ImageView, url: String, defaultImgRes :Int)
+    fun loadCircleImageWithDefault(imageView: ImageView, @DrawableRes showResourceId: Int?, defaultImgRes :Int)
 }

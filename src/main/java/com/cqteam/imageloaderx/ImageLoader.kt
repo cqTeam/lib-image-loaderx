@@ -14,40 +14,40 @@ import com.cqteam.imageloaderx.utils.ImageUrlUtils
  */
 object ImageLoader {
 
-    private val loader: ILoader = GlideLoader()
+    private val loader: ILoader = ImageLoaderManager.getLoader()
 
-    fun show(context: Context, imageView: ImageView, url: String){
-        loader.load(context,imageView,
+    fun show(imageView: ImageView, url: String){
+        loader.load(imageView,
             ImageUrlUtils.handle(url),GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
     }
 
-    fun showWithDefault(context: Context, imageView: ImageView, url: String, defaultImgRes :Int){
-        loader.load(context,imageView,
+    fun showWithDefault( imageView: ImageView, url: String, defaultImgRes :Int){
+        loader.load(imageView,
             ImageUrlUtils.handle(url),defaultImgRes,defaultImgRes)
     }
 
-    fun showCircleWithDefault(context: Context, imageView: ImageView, url: String, defaultImgRes :Int){
-        loader.loadCircleImageWithDefault(context,imageView,ImageUrlUtils.handle(url), defaultImgRes)
+    fun showCircleWithDefault(imageView: ImageView, url: String, defaultImgRes :Int){
+        loader.loadCircleImageWithDefault(imageView,ImageUrlUtils.handle(url), defaultImgRes)
     }
 
-    fun show(context: Context, imageView: ImageView, resourceId: Int) {
-        loader.load(context,imageView,resourceId,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
+    fun show(imageView: ImageView, resourceId: Int) {
+        loader.load(imageView,resourceId,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
     }
 
-    fun show(context: Context, imageView: ImageView, resourceId: Int, topLeftRadius: Int, topRightRadius: Int) {
-        loader.loadRoundedCornersImage(context,imageView,resourceId,topLeftRadius,topRightRadius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
+    fun show(imageView: ImageView, resourceId: Int, topLeftRadius: Int, topRightRadius: Int) {
+        loader.loadRoundedCornersImage(imageView,resourceId,topLeftRadius,topRightRadius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
     }
 
-    fun show(context: Context, imageView: ImageView, url: String, topLeftRadius: Int, topRightRadius: Int) {
-        loader.loadRoundedCornersImage(context,imageView,ImageUrlUtils.handle(url),topLeftRadius,topRightRadius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
+    fun show(imageView: ImageView, url: String, topLeftRadius: Int, topRightRadius: Int) {
+        loader.loadRoundedCornersImage(imageView,ImageUrlUtils.handle(url),topLeftRadius,topRightRadius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
     }
 
-    fun show(context: Context, imageView: ImageView, resourceId: Int, radius: Int) {
-        loader.loadRoundedCornersImage(context,imageView,resourceId,radius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
+    fun show(imageView: ImageView, resourceId: Int, radius: Int) {
+        loader.loadRoundedCornersImage(imageView,resourceId,radius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
     }
 
-    fun show(context: Context, imageView: ImageView, url: String, radius: Int) {
-        loader.loadRoundedCornersImage(context,imageView,ImageUrlUtils.handle(url),radius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
+    fun show(imageView: ImageView, url: String, radius: Int) {
+        loader.loadRoundedCornersImage(imageView,ImageUrlUtils.handle(url),radius,GlobalConfiguration.placeholderResourceId,GlobalConfiguration.errorResourceId)
     }
 
     /**

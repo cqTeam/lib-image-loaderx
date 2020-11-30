@@ -12,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.cqteam.imageloaderx.ILoader
+import com.cqteam.imageloaderx.ImageLoaderManager
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 /**
@@ -23,31 +24,31 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
  */
 internal class GlideLoader : ILoader {
 
-    override fun load(context: Context, view: ImageView, url: String) {
-        Glide.with(context).load(url).into(view)
+    private val mContext = ImageLoaderManager.getContext()
+
+    override fun load(view: ImageView, url: String) {
+        Glide.with(mContext).load(url).into(view)
     }
 
     override fun load(
-        context: Context,
         view: ImageView,
         url: String,
         placeholderResourceId: Int?,
         errorResourceId: Int?
     ) {
-        val requestBuilder: RequestBuilder<Drawable> = Glide.with(context).load(url)
+        val requestBuilder: RequestBuilder<Drawable> = Glide.with(mContext).load(url)
         if (placeholderResourceId != null) requestBuilder.placeholder(placeholderResourceId)
         if (errorResourceId != null) requestBuilder.error(errorResourceId)
         requestBuilder.into(view)
     }
 
     override fun load(
-        context: Context,
         view: ImageView,
         showResourceId: Int?,
         placeholderResourceId: Int?,
         errorResourceId: Int?
     ) {
-        val requestBuilder: RequestBuilder<Drawable> = Glide.with(context).load(showResourceId)
+        val requestBuilder: RequestBuilder<Drawable> = Glide.with(mContext).load(showResourceId)
         if (placeholderResourceId != null) requestBuilder.placeholder(placeholderResourceId)
         if (errorResourceId != null) requestBuilder.error(errorResourceId)
         requestBuilder.into(view)
@@ -57,7 +58,6 @@ internal class GlideLoader : ILoader {
      *  四个圆角
      */
     override fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         url: String,
         roundingRadius: Int,
@@ -68,7 +68,7 @@ internal class GlideLoader : ILoader {
         val roundedCorners = RoundedCorners(roundingRadius)
         //通过RequestOptions扩展功能
         val options = RequestOptions.bitmapTransform(roundedCorners as Transformation<Bitmap>)
-        val requestBuilder: RequestBuilder<Drawable> = Glide.with(context).load(url).apply(options)
+        val requestBuilder: RequestBuilder<Drawable> = Glide.with(mContext).load(url).apply(options)
         if (placeholderResourceId != null) requestBuilder.placeholder(placeholderResourceId)
         if (errorResourceId != null) requestBuilder.error(errorResourceId)
         requestBuilder.into(view)
@@ -78,7 +78,6 @@ internal class GlideLoader : ILoader {
      *  四个圆角
      */
     override fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         showResourceId: Int?,
         roundingRadius: Int,
@@ -89,14 +88,13 @@ internal class GlideLoader : ILoader {
         val roundedCorners = RoundedCorners(roundingRadius)
         //通过RequestOptions扩展功能
         val options = RequestOptions.bitmapTransform(roundedCorners as Transformation<Bitmap>)
-        val requestBuilder: RequestBuilder<Drawable> = Glide.with(context).load(showResourceId).apply(options)
+        val requestBuilder: RequestBuilder<Drawable> = Glide.with(mContext).load(showResourceId).apply(options)
         if (placeholderResourceId != null) requestBuilder.placeholder(placeholderResourceId)
         if (errorResourceId != null) requestBuilder.error(errorResourceId)
         requestBuilder.into(view)
     }
 
     override fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         url: String,
         topLeftRadius: Int,
@@ -111,14 +109,13 @@ internal class GlideLoader : ILoader {
         val mation = MultiTransformation<Bitmap>(roundedCorners1,roundedCorners2)
         //通过RequestOptions扩展功能
         val options = RequestOptions.bitmapTransform(mation)
-        val requestBuilder: RequestBuilder<Drawable> = Glide.with(context).load(url).apply(options)
+        val requestBuilder: RequestBuilder<Drawable> = Glide.with(mContext).load(url).apply(options)
         if (placeholderResourceId != null) requestBuilder.placeholder(placeholderResourceId)
         if (errorResourceId != null) requestBuilder.error(errorResourceId)
         requestBuilder.into(view)
     }
 
     override fun loadRoundedCornersImage(
-        context: Context,
         view: ImageView,
         showResourceId: Int?,
         topLeftRadius: Int,
@@ -133,30 +130,28 @@ internal class GlideLoader : ILoader {
         val mation = MultiTransformation<Bitmap>(roundedCorners1,roundedCorners2)
         //通过RequestOptions扩展功能
         val options = RequestOptions.bitmapTransform(mation)
-        val requestBuilder: RequestBuilder<Drawable> = Glide.with(context).load(showResourceId).apply(options)
+        val requestBuilder: RequestBuilder<Drawable> = Glide.with(mContext).load(showResourceId).apply(options)
         if (placeholderResourceId != null) requestBuilder.placeholder(placeholderResourceId)
         if (errorResourceId != null) requestBuilder.error(errorResourceId)
         requestBuilder.into(view)
     }
 
     override fun loadCircleImageWithDefault(
-        context: Context,
         imageView: ImageView,
         url: String,
         defaultImgRes: Int
     ) {
-        Glide.with(context).load(url).apply(RequestOptions.bitmapTransform(
+        Glide.with(mContext).load(url).apply(RequestOptions.bitmapTransform(
             CircleCrop()
         )).placeholder(defaultImgRes).error(defaultImgRes).into(imageView)
     }
 
     override fun loadCircleImageWithDefault(
-        context: Context,
         imageView: ImageView,
         showResourceId: Int?,
         defaultImgRes: Int
     ) {
-        Glide.with(context).load(showResourceId).apply(RequestOptions.bitmapTransform(
+        Glide.with(mContext).load(showResourceId).apply(RequestOptions.bitmapTransform(
             CircleCrop()
         )).placeholder(defaultImgRes).error(defaultImgRes).into(imageView)
     }
